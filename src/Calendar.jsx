@@ -1,18 +1,36 @@
+//Получаем месяц в родительном падеже
+function monthPlural(date){
+    const a =  date.format('D MMMM');
+    const words = a.split(' ');
+    const monthX = words[1];
+    return monthX;
+}
+
 function Calendar({ date }){
+
+
+    const newDate = date.format('LLLL');
+
+    const dayN = date.date(); // День месяца (число)
+    const day = date.format('dddd'); //День недели
+    const month =  date.format('MMMM');
+
+    const monthX = monthPlural(date);
+    const year = date.year();
 
     return(
     <div className="ui-datepicker">
   <div className="ui-datepicker-material-header">
-    <div className="ui-datepicker-material-day">Среда</div>
+    <div className="ui-datepicker-material-day">{day}</div>
     <div className="ui-datepicker-material-date">
-      <div className="ui-datepicker-material-day-num">8</div>
-      <div className="ui-datepicker-material-month">Марта</div>
-      <div className="ui-datepicker-material-year">2017</div>
+      <div className="ui-datepicker-material-day-num">{dayN}</div>
+      <div className="ui-datepicker-material-month">{monthX}</div>
+      <div className="ui-datepicker-material-year">{year}</div>
     </div>
   </div>
   <div className="ui-datepicker-header">
     <div className="ui-datepicker-title">
-      <span className="ui-datepicker-month">Март</span>&nbsp;<span className="ui-datepicker-year">2017</span>
+      <span className="ui-datepicker-month">{month}</span>&nbsp;<span className="ui-datepicker-year">{year}</span>
     </div>
   </div>
   <table className="ui-datepicker-calendar">
