@@ -1,7 +1,5 @@
 import {getMonthPlural, getDaysArray} from '../utils.jsx'
 
-
-
 function Calendar({ date }) {
 
     
@@ -23,25 +21,25 @@ function Calendar({ date }) {
 
         if (daysArray[i].daysOfPrevMonth.length > 0) {
             prev = daysArray[i].daysOfPrevMonth.map((number1) =>
-                <td key = {DayKey++} className="ui-datepicker-other-month">{number1}</td>
+                <td key = {`week ${i} day ${number1}`} className="ui-datepicker-other-month">{number1}</td>
             );
         }
-
 
         let n = [];
         if (daysArray[i].days.includes(dayN)) {
             for (let j = 0; j < daysArray[i].days.length; j++) {
                 if (daysArray[i].days[j] == dayN) {
-                    n = n.concat(<td className="ui-datepicker-today">{daysArray[i].days[j]}</td>);
+                    n = n.concat(<td key = {`week ${i} day ${j}`} className="ui-datepicker-today">{daysArray[i].days[j]}</td>);
+                    
                 }
                 else {
-                    n = n.concat(<td key = {DayKey++}>{daysArray[i].days[j]}</td>);
+                    n = n.concat(<td key = {`week ${i} day ${j}`}>{daysArray[i].days[j]}</td>);
                 }
             }
         }
         else {
             n = daysArray[i].days.map((number2) =>
-                <td key = {DayKey++}>{number2}</td>
+                <td key = {`week ${i} day ${number2}`}>{number2}</td>
             );
         }
 
@@ -49,15 +47,15 @@ function Calendar({ date }) {
         let next = [];
         if (daysArray[i].daysOfNextMonth.length > 0) {
             next = daysArray[i].daysOfNextMonth.map((number3) =>
-                <td key = {DayKey++} className="ui-datepicker-other-month">{number3}</td>
+                <td key = {`week ${i} day ${number3}`} className="ui-datepicker-other-month">{number3}</td>
             );
         }
-
+        
         const listItems = prev.concat(n.concat(next));
-        listOfWeeks[i] = <tr key = {i}>{listItems}</tr>;
+        let weekId = `week ${i}`;
+        listOfWeeks[i] = <tr key = {weekId}>{listItems}</tr>;
         
     }
-
     return (
         <div className="ui-datepicker">
             <div className="ui-datepicker-material-header">
