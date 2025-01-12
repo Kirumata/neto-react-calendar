@@ -1,5 +1,5 @@
 import './App.css'
-import Calendar from './Calendar.jsx'
+import Calendar from './components/Calendar.jsx'
 import moment from 'moment/min/moment-with-locales'
 
 function App() {
